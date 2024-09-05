@@ -1,0 +1,4 @@
+com/example/demoStreamKafka/DemoStreamKafkaApplication.class
+com/example/demoStreamKafka/config/ConfigurationApp.class
+com/example/demoStreamKafka/dto/ProductSimpleDTO.class
+com/example/demoStreamKafka/dto/ProductCompleteDTO.class

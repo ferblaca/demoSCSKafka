@@ -1,0 +1,44 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /demo-stream-kafka
+logging:
+  level:
+    root: INFO
+    org.springframework.kafka.listener.KafkaMessageListenerContainer: INFO
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+  cloud:
+    function:
+      definition: simpleConsumer;completeConsumer;zipkin
+    stream:
+      output-bindings: foo-out-0
+      bindings:
+        simpleConsumer-in-0:
+          group: my-group-simple
+          destination: input-topic
+        completeConsumer-in-0:
+          group: my-group-complete
+          destination: input-topic
+        zipkin-in-0:
+          group: my-group
+          destination: zipkin
+          contentType: application/json
+        foo-out-0:
+          destination: input-topic
+      kafka:
+        bindings:
+          foo-in-0:
+            consumer:
+              enableDlq: true
+              dlqName: input-topic-dlq
+
+management:
+  health:
+    binders:
+      enabled: true
+  endpoint:
+    health:
+      show-details: ALWAYS
+
