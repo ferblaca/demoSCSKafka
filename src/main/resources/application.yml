@@ -7,11 +7,17 @@ logging:
     root: INFO
     org.springframework.kafka.listener.KafkaMessageListenerContainer: INFO
 spring:
+  docker:
+    compose:
+      skip:
+        in-tests: false
+      file: "file:@project.basedir@/src/main/resources/compose/docker-compose.yml"
+      lifecycle-management: start-and-stop
   kafka:
     bootstrap-servers: localhost:9092
   cloud:
     function:
-      definition: simpleConsumer;completeConsumer;zipkin
+      definition: simpleConsumer;completeConsumer
     stream:
       output-bindings: foo-out-0
       bindings:
@@ -21,18 +27,13 @@ spring:
         completeConsumer-in-0:
           group: my-group-complete
           destination: input-topic
-        zipkin-in-0:
-          group: my-group
-          destination: zipkin
-          contentType: application/json
         foo-out-0:
           destination: input-topic
-      kafka:
-        bindings:
-          foo-in-0:
-            consumer:
-              enableDlq: true
-              dlqName: input-topic-dlq
+
+demo:
+  jackson:
+    mapper:
+      enabled: false
 
 management:
   health:
