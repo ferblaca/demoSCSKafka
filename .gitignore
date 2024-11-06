@@ -5,7 +5,7 @@ log/
 # JS dependencies
 *node_modules*
 
-# Package Files
+# Package Files 
 *.jar
 *.war
 *.ear
@@ -65,7 +65,3 @@ databaseChanges.json
 databaseChangesQueries.txt
 Dockerfile
 jmeter-repo
-
-/paas/info.after_check.yml
-/paas/info.before_check.yml
-/paas/cache**/**

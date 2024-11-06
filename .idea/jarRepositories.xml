@@ -67,9 +67,19 @@
       <option name="url" value="https://inditex.jfrog.io/inditex/maven-public" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="spring-milestones" />
+      <option name="name" value="Spring Milestones" />
+      <option name="url" value="https://repo.spring.io/milestone" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="rsocket-snapshots" />
       <option name="name" value="RSocket Snapshots" />
       <option name="url" value="https://inditex.jfrog.io/inditex/maven-public" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="spring-snapshots" />
+      <option name="name" value="Spring Snapshots" />
+      <option name="url" value="https://repo.spring.io/snapshot" />
     </remote-repository>
     <remote-repository>
       <option name="id" value="spring-releases" />

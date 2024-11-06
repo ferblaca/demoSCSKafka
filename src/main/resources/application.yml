@@ -1,3 +1,4 @@
+debug: true
 server:
   port: 8080
   servlet:
@@ -17,23 +18,35 @@ spring:
     bootstrap-servers: localhost:9092
   cloud:
     function:
-      definition: simpleConsumer;completeConsumer
+      definition: completeConsumer1;completeConsumer2
     stream:
+      defaultBinder: kafka1
+      binders:
+        kafka1:
+          type: kafka
+          environment:
+            spring:
+              main:
+                sources: com.example.demoStreamKafka.sources.KafkaProducerConsumerConfiguration
+        kafka2:
+          type: kafka
+          environment:
+            spring:
+              main:
+                sources: com.example.demoStreamKafka.sources.KafkaProducerConsumerConfiguration
       output-bindings: foo-out-0
       bindings:
-        simpleConsumer-in-0:
-          group: my-group-simple
+        completeConsumer1-in-0:
+          binder: kafka1
+          group: my-group-complete1
           destination: input-topic
-        completeConsumer-in-0:
-          group: my-group-complete
+        completeConsumer2-in-0:
+          binder: kafka2
+          group: my-group-complete2
           destination: input-topic
         foo-out-0:
+          binder: kafka1
           destination: input-topic
-
-demo:
-  jackson:
-    mapper:
-      enabled: false
 
 management:
   health:
@@ -43,3 +56,5 @@ management:
     health:
       show-details: ALWAYS
 
+custom-client-id:
+  enabled: true
