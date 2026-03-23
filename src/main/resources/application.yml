@@ -5,35 +5,89 @@ server:
 logging:
   level:
     root: INFO
-    org.springframework.kafka.listener.KafkaMessageListenerContainer: INFO
+    com.example.demoStreamKafka.config: INFO
 spring:
-  docker:
-    compose:
-      skip:
-        in-tests: false
-      file: "file:@project.basedir@/src/main/resources/compose/docker-compose.yml"
-      lifecycle-management: start-and-stop
   kafka:
     bootstrap-servers: localhost:9092
   cloud:
     function:
-      definition: simpleConsumer;completeConsumer
+#      definition: batchConsumerAckManual;batchConsumerNackManual
+      definition: batchConsumerAckManual
     stream:
+      kafka:
+        bindings:
+          batchConsumer-in-0:
+            consumer:
+              enable-dlq: true
+              dlq-name: input-topic-batch.dlq
+              configuration:
+                max.poll.records: 100
+                fetch.max.wait.ms: 3000
+                fetch.min.bytes: 100000
+          batchConsumerBatchListenerException-in-0:
+            consumer:
+              enable-dlq: true
+              dlq-name: input-topic-batch-listener-exception.dlq
+              configuration:
+                max.poll.records: 100
+                fetch.max.wait.ms: 3000
+                fetch.min.bytes: 100000
+          batchConsumerAckManual-in-0:
+            consumer:
+              enable-dlq: true
+              dlq-name: input-topic-batch-ack-manual.dlq
+              ack-mode: MANUAL_IMMEDIATE
+              configuration:
+                max.poll.records: 100
+                fetch.max.wait.ms: 3000
+                fetch.min.bytes: 100000
+          batchConsumerNackManual-in-0:
+            consumer:
+              enable-dlq: true
+              dlq-name: input-topic-batch-nack-manual.dlq
+              ack-mode: MANUAL_IMMEDIATE
+              configuration:
+                max.poll.records: 100
+                fetch.max.wait.ms: 3000
+                fetch.min.bytes: 100000
+          customErrorBatchConsumer-in-0:
+            consumer:
+              commonErrorHandlerBeanName: customBatchConsumerCommonErrorHandler
+              enable-dlq: true
+              dlq-name: input-topic-batch-custom-error.dlq
+              configuration:
+                max.poll.records: 100
+                fetch.max.wait.ms: 3000
+                fetch.min.bytes: 100000
       output-bindings: foo-out-0
       bindings:
-        simpleConsumer-in-0:
-          group: my-group-simple
-          destination: input-topic
-        completeConsumer-in-0:
-          group: my-group-complete
-          destination: input-topic
+        batchConsumer-in-0:
+          group: my-group-complete-batchConsumer
+          destination: input-topic-batch
+          consumer:
+            batch-mode: true
+        batchConsumerBatchListenerException-in-0:
+          group: my-group-complete-batchConsumerBatchListenerException
+          destination: input-topic-batch
+          consumer:
+            batch-mode: true
+        batchConsumerAckManual-in-0:
+          group: my-group-complete-batchConsumerAckManual
+          destination: input-topic-batch
+          consumer:
+            batch-mode: true
+        batchConsumerNackManual-in-0:
+          group: my-group-complete-batchConsumerNackManual
+          destination: input-topic-batch
+          consumer:
+              batch-mode: true
+        customErrorBatchConsumer-in-0:
+          group: my-group-complete-customErrorBatchConsumer
+          destination: input-topic-batch
+          consumer:
+              batch-mode: true
         foo-out-0:
-          destination: input-topic
-
-demo:
-  jackson:
-    mapper:
-      enabled: false
+          destination: input-topic-batch
 
 management:
   health:
