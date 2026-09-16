@@ -1,0 +1,18 @@
+pom.xml
+  h_19ae496347280f 8,18
+src/main/java/com/example/demoStreamKafka/DemoStreamKafkaApplication.java
+  h_19ae496347280f 9-11
+src/main/java/com/example/demoStreamKafka/config/ConfigurationApp.java
+  h_19ae496347280f 14,16-19,21-24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "30ccc4121ff536fac30c35c5dcc47bd18ce9e1ce",
+  "prompts": {},
+  "humans": {
+    "h_19ae496347280f": {
+      "author": "Fernando Blanch Calvete <fernandobc@ext.inditex.com>"
+    }
+  }
+}
