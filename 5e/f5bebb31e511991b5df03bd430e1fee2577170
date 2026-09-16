@@ -1,0 +1,21 @@
+.idea/inspectionProfiles/Project_Default.xml
+  s_6d9aad2ed92d35::t_750c72378fe37c 4,8-10
+.idea/misc.xml
+  s_6d9aad2ed92d35::t_18ef8114b77e77 11
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "5ef5bebb31e511991b5df03bd430e1fee2577170",
+  "prompts": {},
+  "sessions": {
+    "s_6d9aad2ed92d35": {
+      "agent_id": {
+        "tool": "opencode",
+        "id": "ses_f56dc5afcffeqBoTw2B06AC80F",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Fernando Blanch Calvete <fernandobc@ext.inditex.com>"
+    }
+  }
+}
