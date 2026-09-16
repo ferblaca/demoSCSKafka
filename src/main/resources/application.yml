@@ -31,10 +31,14 @@ spring:
           destination: input-topic
 
 management:
+  endpoints:
+    web:
+      exposure:
+        include: health,bindings
+      base-path: /stream
   health:
     binders:
       enabled: true
   endpoint:
     health:
       show-details: ALWAYS
-
