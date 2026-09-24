@@ -17,15 +17,12 @@ spring:
     bootstrap-servers: localhost:9092
   cloud:
     function:
-      definition: simpleConsumer;completeConsumer
+      definition: simpleConsumer
     stream:
       output-bindings: foo-out-0
       bindings:
         simpleConsumer-in-0:
           group: my-group-simple
-          destination: input-topic
-        completeConsumer-in-0:
-          group: my-group-complete
           destination: input-topic
         foo-out-0:
           destination: input-topic

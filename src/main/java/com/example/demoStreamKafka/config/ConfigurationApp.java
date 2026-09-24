@@ -1,6 +1,5 @@
 package com.example.demoStreamKafka.config;
 
-import com.example.demoStreamKafka.dto.ProductCompleteDTO;
 import com.example.demoStreamKafka.dto.ProductSimpleDTO;
 import com.example.demoStreamKafka.repro.ReproductionController;
 import org.slf4j.Logger;
@@ -20,11 +19,6 @@ public class ConfigurationApp {
 			reproductionController.messageReceived();
 			LOG.info("Received simple Id: {}", s.getId());
 		};
-	}
-
-	@Bean
-	public Consumer<ProductCompleteDTO> completeConsumer() {
-		return s -> LOG.info("Received complete Id: {}", s.getId());
 	}
 
 }
