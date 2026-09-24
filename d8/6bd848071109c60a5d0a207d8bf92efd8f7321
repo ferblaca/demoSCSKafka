@@ -1,0 +1,18 @@
+pom.xml
+  h_19ae496347280f 18,57-66
+src/main/java/com/example/demoStreamKafka/repro/ReproductionController.java
+  h_19ae496347280f 7,13,30,36,42,52-77,91
+src/main/resources/application.yml
+  h_19ae496347280f 20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "d86bd848071109c60a5d0a207d8bf92efd8f7321",
+  "prompts": {},
+  "humans": {
+    "h_19ae496347280f": {
+      "author": "Fernando Blanch Calvete <fernandobc@ext.inditex.com>"
+    }
+  }
+}
